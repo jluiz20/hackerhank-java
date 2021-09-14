@@ -4,25 +4,20 @@ public class MinimumSwaps2 {
 
 
     static int minimumSwaps(int[] arr) {
+        int i = 0;
         int swaps = 0;
-        for (int i = 0; i <= arr.length - 1; i++) {
-            int minPosition = i;
 
-            for (int j = i + 1; j <= arr.length - 1; j++) {
-                if (arr[j] < arr[minPosition]) {
-                    minPosition = j;
-                }
-            }
-
-            if (minPosition != i) {
+        while (i < arr.length) {
+            if (arr[i] != i + 1) {
                 int temp = arr[i];
-                arr[i] = arr[minPosition];
-                arr[minPosition] = temp;
+                arr[i] = arr[temp - 1];
+                arr[temp - 1] = temp;
 
                 swaps++;
+            } else {
+                i++;
             }
         }
-
         return swaps;
     }
 }
