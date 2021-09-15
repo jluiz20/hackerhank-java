@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 public class TwoStrings {
 
     public static String twoStrings(String s1, String s2) {
-        Set<String> set1 = s1.chars().mapToObj(Objects::toString).collect(Collectors.toSet());
-        Set<String> set2 = s2.chars().mapToObj(Objects::toString).collect(Collectors.toSet());
+        Set<Character> set1 = s1.chars().mapToObj(e -> (char) e).collect(Collectors.toSet());
+        Set<Character> set2 = s2.chars().mapToObj(e -> (char) e).collect(Collectors.toSet());
 
-        for (String s : set1) {
+        for (Character s : set1) {
             if (set2.contains(s)) {
                 return "YES";
             }
