@@ -1,9 +1,12 @@
 package com.hackerhank.joao.sort;
 
+import java.util.List;
+
 public class MergeSortCountInversions {
 
-    static long countInversions(Integer[] arr) {
-        return mergeSort(arr, 0, arr.length - 1);
+    static long countInversions(List<Integer> arr) {
+        Integer[] array = arr.toArray(new Integer[0]);
+        return mergeSort(array, 0, array.length - 1);
     }
 
     private static long mergeSort(Integer[] arr, int leftIndex, int rightIndex) {

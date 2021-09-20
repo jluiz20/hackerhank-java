@@ -15,7 +15,7 @@ public class MergeSortCountInversionsTest {
 
     @Test
     public void shouldMergeSort0() {
-        Integer[] unsorted = {2, 1, 3, 1, 2};
+        List<Integer> unsorted = Arrays.asList(2, 1, 3, 1, 2);
 
         long inversions = MergeSortCountInversions.countInversions(unsorted);
 
@@ -24,7 +24,7 @@ public class MergeSortCountInversionsTest {
 
     @Test
     public void shouldMergeSort1() {
-        Integer[] unsorted = {1, 1, 1, 2, 2};
+        List<Integer> unsorted = Arrays.asList(1, 1, 1, 2, 2);
 
         long inversions = MergeSortCountInversions.countInversions(unsorted);
 
@@ -33,7 +33,7 @@ public class MergeSortCountInversionsTest {
 
     @Test
     public void shouldMergeSort2() {
-        Integer[] unsorted = {1, 5, 3, 7};
+        List<Integer> unsorted = Arrays.asList(1, 5, 3, 7);
 
         long inversions = MergeSortCountInversions.countInversions(unsorted);
 
