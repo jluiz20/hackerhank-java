@@ -2,57 +2,67 @@ package com.hackerhank.joao.sort;
 
 public class MergeSortCountInversions {
 
-    public static long countInversions(Integer[] array) {
+    static long countInversions(Integer[] arr) {
+        return mergeSort(arr, 0, arr.length - 1);
+    }
+
+    private static long mergeSort(Integer[] arr, int leftIndex, int rightIndex) {
         long inversions = 0;
 
-        int length = array.length;
+        if (leftIndex < rightIndex) {
+            int midpoint = leftIndex + (rightIndex - leftIndex) / 2;
 
-        if (length > 1) {
-            int midpoint = array.length / 2;
-
-            Integer[] left = new Integer[midpoint];
-            Integer[] right = new Integer[length - midpoint];
-            for (int i = 0; i < midpoint; i++) {
-                left[i] = array[i];
-            }
-
-            for (int i = midpoint; i < length; i++) {
-                right[i - midpoint] = array[i];
-            }
-
-            inversions += countInversions(left);
-            inversions += countInversions(right);
-
-            int i = 0;
-            int j = 0;
-            int k = 0;
-
-            while (i < left.length && j < right.length) {
-                if (left[i] < right[j]) {
-                    array[k] = left[i];
-                    i++;
-                } else {
-                    array[k] = right[j];
-                    j++;
-                    inversions += midpoint + 1 - left.length - i;
-                }
-                k++;
-            }
-
-            while (i < left.length) {
-                array[k] = left[i];
-                i++;
-                k++;
-            }
-
-            while (j < right.length) {
-                array[k] = right[j];
-                j++;
-                k++;
-            }
-
+            inversions += mergeSort(arr, leftIndex, midpoint);
+            inversions += mergeSort(arr, midpoint + 1, rightIndex);
+            inversions += merge(arr, leftIndex, midpoint, rightIndex);
         }
 
+        return inversions;
+    }
+
+    private static long merge(Integer[] arr, int l, int midpoint, int r) {
+        int leftSize = midpoint - l + 1;
+        int rightSize = r - midpoint;
+
+        Integer[] left = new Integer[leftSize];
+        for (int i = 0; i < leftSize; i++) {
+            left[i] = arr[l + i];
+        }
+
+        Integer[] right = new Integer[rightSize];
+        for (int j = 0; j < rightSize; j++) {
+            right[j] = arr[midpoint + 1 + j];
+        }
+
+        int i = 0;
+        int j = 0;
+        int k = l;
+        long inversions = 0;
+
+        while (i < leftSize && j < rightSize) {
+            if (left[i] <= right[j]) {
+                arr[k] = left[i];
+                i++;
+                k++;
+            } else {
+                arr[k] = right[j];
+                k++;
+                j++;
+                inversions += left.length - i;
+            }
+        }
+
+        while (i < leftSize) {
+            arr[k] = left[i];
+            i++;
+            k++;
+        }
+
+        while (j < rightSize) {
+            arr[k] = right[j];
+            j++;
+            k++;
+        }
 
         return inversions;
     }
