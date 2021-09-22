@@ -1,6 +1,8 @@
 package com.hackerhank.joao.sort;
 
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class MergeSortCountInversions {
 
