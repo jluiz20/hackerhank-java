@@ -16,5 +16,4 @@ public class MaxMinTest {
 
         assertThat(result).isEqualTo(2);
     }
-
 }
