@@ -16,5 +16,4 @@ public class MinimumTimeRequiredTest {
 
         assertThat(result).isEqualTo(6);
     }
-
 }
